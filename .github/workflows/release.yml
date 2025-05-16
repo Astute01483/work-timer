@@ -7,13 +7,17 @@ on:
 jobs:
   release:
     runs-on: ${{ matrix.os }}
+    continue-on-error: true
 
     strategy:
+      fail-fast: false
       matrix:
         os: [windows-latest, macos-latest, ubuntu-latest]
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       
       - name: Setup Node.js
         uses: actions/setup-node@v2
@@ -23,15 +27,33 @@ jobs:
       - name: Install Dependencies
         run: npm install
         
-      - name: Build and Publish
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: Debug Environment
+        run: |
+          echo "Running on $RUNNER_OS"
+          echo "Node version: $(node -v)"
+          echo "NPM version: $(npm -v)"
+          ls -la
+          
+      - name: Make Platform Packages
         run: |
           if [ "$RUNNER_OS" == "Windows" ]; then
-            npm run publish-win
+            npm run make-win
           elif [ "$RUNNER_OS" == "macOS" ]; then
-            npm run publish-mac
+            npm run make-mac
           else
-            npm run publish-linux
+            npm run make-linux
           fi
         shell: bash
+        
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            out/make/**/*.exe
+            out/make/**/*.msi
+            out/make/**/*.dmg
+            out/make/**/*.zip
+            out/make/**/*.deb
+            out/make/**/*.rpm
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

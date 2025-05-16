@@ -46,7 +46,6 @@
         "name": "Work Timer",
         "executableName": "work-timer",
         "asar": true,
-        "icon": "assets/icons/icon",
         "appBundleId": "com.astute01483.worktimer",
         "appCategoryType": "public.app-category.productivity",
         "protocols": [
@@ -76,11 +75,7 @@
           "config": {
             "name": "work_timer",
             "setupExe": "WorkTimerSetup.exe",
-            "setupIcon": "assets/icons/icon.ico",
-            "iconUrl": "https://raw.githubusercontent.com/Astute01483/work-timer/main/assets/icons/icon.ico",
-            "loadingGif": "assets/installer/install-spinner.gif",
-            "noMsi": false,
-            "remoteReleases": "https://github.com/Astute01483/work-timer"
+            "noMsi": false
           }
         },
         {
