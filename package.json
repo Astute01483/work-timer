@@ -1,0 +1,140 @@
+{
+  "name": "work-timer",
+  "productName": "Work Timer",
+  "version": "1.0.0",
+  "description": "A desktop time tracking application with employee information",
+  "main": "src/main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Astute01483/work-timer.git"
+  },
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "make-win": "electron-forge make --platform win32",
+    "make-mac": "electron-forge make --platform darwin",
+    "make-linux": "electron-forge make --platform linux",
+    "publish-win": "electron-forge publish --platform win32",
+    "publish-mac": "electron-forge publish --platform darwin",
+    "publish-linux": "electron-forge publish --platform linux"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.1",
+    "electron-store": "^8.1.0"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.4.2",
+    "@electron-forge/maker-deb": "^6.4.2",
+    "@electron-forge/maker-dmg": "^6.4.2",
+    "@electron-forge/maker-rpm": "^6.4.2",
+    "@electron-forge/maker-squirrel": "^6.4.2",
+    "@electron-forge/maker-zip": "^6.4.2",
+    "@electron-forge/plugin-auto-unpack-natives": "^6.4.2",
+    "@electron-forge/publisher-github": "^7.8.1",
+    "electron": "^28.0.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-import": "^2.29.1"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "name": "Work Timer",
+        "executableName": "work-timer",
+        "asar": true,
+        "icon": "assets/icons/icon",
+        "appBundleId": "com.astute01483.worktimer",
+        "appCategoryType": "public.app-category.productivity",
+        "protocols": [
+          {
+            "name": "Work Timer Protocol",
+            "schemes": [
+              "worktimer"
+            ]
+          }
+        ]
+      },
+      "publishers": [
+        {
+          "name": "@electron-forge/publisher-github",
+          "config": {
+            "repository": {
+              "owner": "Astute01483",
+              "name": "work-timer"
+            },
+            "prerelease": false
+          }
+        }
+      ],
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "work_timer",
+            "setupExe": "WorkTimerSetup.exe",
+            "setupIcon": "assets/icons/icon.ico",
+            "iconUrl": "https://raw.githubusercontent.com/Astute01483/work-timer/main/assets/icons/icon.ico",
+            "loadingGif": "assets/installer/install-spinner.gif",
+            "noMsi": false,
+            "remoteReleases": "https://github.com/Astute01483/work-timer"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-dmg",
+          "config": {
+            "format": "ULFO",
+            "icon": "assets/icons/icon.icns",
+            "name": "Work Timer",
+            "background": "assets/installer/dmg-background.png",
+            "contents": [
+              {
+                "x": 448,
+                "y": 344,
+                "type": "link",
+                "path": "/Applications"
+              },
+              {
+                "x": 192,
+                "y": 344,
+                "type": "file",
+                "path": "../../out/Work Timer.app"
+              }
+            ]
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin",
+            "win32",
+            "linux"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {
+            "options": {
+              "maintainer": "Your Name",
+              "homepage": "https://your-website.com",
+              "icon": "assets/icons/icon.png"
+            }
+          }
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {
+            "options": {
+              "maintainer": "Your Name",
+              "homepage": "https://your-website.com",
+              "icon": "assets/icons/icon.png"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

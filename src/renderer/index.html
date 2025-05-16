@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Work Timer</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .employee-info {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .employee-info h2 {
+            margin: 0 0 10px 0;
+            color: #4a90e2;
+        }
+        .employee-info p {
+            margin: 0;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="employee-info">
+            <h2>Employee Information</h2>
+            <p id="employeeName"></p>
+        </div>
+        <!-- Confirmation Dialog -->
+        <div class="confirmation-overlay" id="confirmationOverlay"></div>
+        <div class="confirmation-dialog" id="confirmationDialog">
+            <h3>Are you sure you want to finish the current task?</h3>
+            <div class="task-info">
+                <p id="taskName">Task: <span id="activeTaskName"></span></p>
+                <p id="taskDuration">Duration: <span id="currentDuration"></span></p>
+            </div>
+            <div class="buttons">
+                <button class="yes-btn" id="confirmYesBtn">Yes</button>
+                <button class="no-btn" id="confirmNoBtn">No</button>
+            </div>
+        </div>
+        <header>
+            <h1>Work Timer</h1>
+            <div class="timer" id="timer">00:00:00</div>
+            <div class="controls">
+                <button id="startBtn" class="btn">Start</button>
+                <button id="stopBtn" class="btn" disabled>Pause</button>
+                <button id="resetBtn" class="btn">Continue</button>
+                <button id="addNoteBtn" class="btn">Add Note</button>
+                <button id="finishTaskBtn" class="btn">Finish Task</button>
+            </div>
+        </header>
+        <main>
+            <div class="task-list">
+                <h2>Tasks</h2>
+                <div class="task-input">
+                    <input type="text" id="taskInput" placeholder="Enter task name">
+                    <button id="addTaskBtn" class="btn">Add Task</button>
+                </div>
+                <ul id="taskList">
+                    <!-- Tasks will be added here -->
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>
