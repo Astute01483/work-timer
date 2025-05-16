@@ -17,9 +17,9 @@
     "make-win": "electron-forge make --platform win32",
     "make-mac": "electron-forge make --platform darwin",
     "make-linux": "electron-forge make --platform linux",
-    "publish-win": "electron-forge publish --platform win32",
-    "publish-mac": "electron-forge publish --platform darwin",
-    "publish-linux": "electron-forge publish --platform linux"
+    "publish-win": "electron-forge publish --platform win32 --target @electron-forge/publisher-github",
+    "publish-mac": "electron-forge publish --platform darwin --target @electron-forge/publisher-github",
+    "publish-linux": "electron-forge publish --platform linux --target @electron-forge/publisher-github"
   },
   "author": "Your Name",
   "license": "MIT",
